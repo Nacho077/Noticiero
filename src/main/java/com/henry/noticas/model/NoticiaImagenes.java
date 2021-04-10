@@ -10,4 +10,9 @@ import java.util.List;
 public class NoticiaImagenes extends NoticiaPadre{
 
     private List<String> urlImagenes;
+
+    @Override
+    public NoticiaEnum noticiaEnum() {
+        return NoticiaEnum.IMAGENES;
+    }
 }

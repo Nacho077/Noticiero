@@ -8,4 +8,9 @@ import lombok.NoArgsConstructor;
 public class NoticiaVideo extends NoticiaPadre{
 
     private String urlVideo;
+
+    @Override
+    public NoticiaEnum noticiaEnum() {
+        return NoticiaEnum.VIDEO;
+    }
 }
