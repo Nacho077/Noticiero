@@ -2,6 +2,7 @@ package com.henry.noticas.controller;
 
 import com.henry.noticas.model.NoticiaEnum;
 import com.henry.noticas.model.NoticiaPadre;
+import com.henry.noticas.model.PaginationResponse;
 import com.henry.noticas.service.NoticiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +23,20 @@ public class NoticiaController {
     }
 
     @GetMapping
-    public Page<NoticiaPadre> getAll(
+    public PaginationResponse<NoticiaPadre> getAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-            @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
-            @RequestParam(value = "noticiaType", required = false, defaultValue = "ALL") NoticiaEnum noticiaEnum
+            @RequestParam(value = "size", required = false, defaultValue = "20") Integer size
     ){
-        return noticiaService.getAll(page, size, noticiaEnum);
+        return noticiaService.getAll(page, size);
+    }
+
+    @GetMapping("/{id}")
+    public NoticiaPadre getById(@PathVariable Integer id){
+        return noticiaService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void removeNoticia(@PathVariable Integer id){
+        noticiaService.removeNoticia(id);
     }
 }
